@@ -5,7 +5,7 @@ import indexRouter from "./src/routes/index.route.js"
 const app = express()
 
 // Habilitación de PUG (Template engine)
-// Set permite habilitar configuraciones. Primero se coloca view engine y luego se especifica cuial se va a usar
+// Set permite habilitar configuraciones. Primero se coloca view engine y luego se especifica cual se va a usar
 app.set("view engine", "pug")
 app.set("views", "./src/views")
 

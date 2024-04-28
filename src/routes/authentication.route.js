@@ -1,9 +1,8 @@
 import express from "express"
+import { authenticationController } from "../controllers/authentication.controller.js"
+
 const router = express.Router()
 
-router.get("/login", (req, res) => {
-	// res.status(200).json({ msg: "Desde authentication route" })
-	res.render("auth/login")
-})
+router.get("/login", authenticationController.login)
 
 export default router
