@@ -1,12 +1,12 @@
 const login = (req, res) => {
 	res.render("auth/login", {
-
+		titlePage: "Iniciar Sesión"
 	})
 }
 
 const register = (req, res) => {
 	res.render("auth/register", {
-		pagina: "Crear Cuenta"
+		titlePage: "Crear Cuenta"
 	})
 }
 
