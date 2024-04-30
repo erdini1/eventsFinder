@@ -1,9 +1,16 @@
 const login = (req, res) => {
 	res.render("auth/login", {
-		autenticado: true
+
+	})
+}
+
+const register = (req, res) => {
+	res.render("auth/register", {
+
 	})
 }
 
 export const authenticationController = {
-	login
+	login,
+	register
 }

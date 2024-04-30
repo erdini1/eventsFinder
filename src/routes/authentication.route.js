@@ -4,5 +4,6 @@ import { authenticationController } from "../controllers/authentication.controll
 const router = express.Router()
 
 router.get("/login", authenticationController.login)
+router.get("/register", authenticationController.register)
 
 export default router
