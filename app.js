@@ -9,6 +9,9 @@ const app = express()
 app.set("view engine", "pug")
 app.set("views", "./src/views")
 
+// Carpeta publica
+app.use(express.static("src/public"))
+
 app.use("/api", indexRouter)
 
 const PORT = process.env.PORT
