@@ -6,7 +6,7 @@ const login = (req, res) => {
 
 const register = (req, res) => {
 	res.render("auth/register", {
-
+		pagina: "Crear Cuenta"
 	})
 }
 
