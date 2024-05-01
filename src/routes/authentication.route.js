@@ -5,5 +5,6 @@ const router = express.Router()
 
 router.get("/login", authenticationController.login)
 router.get("/register", authenticationController.register)
+router.get("/forgot-password", authenticationController.forgotPassword)
 
 export default router

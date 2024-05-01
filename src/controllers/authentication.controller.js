@@ -10,7 +10,14 @@ const register = (req, res) => {
 	})
 }
 
+const forgotPassword = (req, res) => {
+	res.render("auth/forgot-password", {
+		titlePage: "Recupera tu acceso"
+	})
+}
+
 export const authenticationController = {
 	login,
-	register
+	register,
+	forgotPassword
 }
