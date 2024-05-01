@@ -1,5 +1,6 @@
 import express from "express"
-import "dotenv/config"
+import { PORT } from "./src/config/env-defaults.config.js"
+import sequelize from "./src/config/db.config.js"
 import indexRouter from "./src/routes/index.route.js"
 
 const app = express()
@@ -12,9 +13,15 @@ app.set("views", "./src/views")
 // Carpeta publica
 app.use(express.static("src/public"))
 
+try {
+	await sequelize.authenticate()
+	console.log("Connection has been established succesfully.")
+} catch (error) {
+	console.log("Unable to connect to the database", error)
+}
+
 app.use("/api", indexRouter)
 
-const PORT = process.env.PORT
 app.listen(PORT, () => {
 	console.log(`Server running on port ${PORT}`)
 })
