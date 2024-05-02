@@ -8,13 +8,13 @@ block content
 
 		div(class="mt-8 mx-auto max-w-md")
 			div(class="bg-white py-8 px-4 shadow")
-				form(class="space-y-5" method="POST" action="/api/auth/register")
+				form(class="space-y-5" method="POST" action="/auth/register")
 					div 
-						label(class="block text-sm uppercase text-gray-500 mb-2 font-bold" for="nombre") Nombre
-						input#nombre(class="w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400" placeholder="Nombre" type="text" name="nombre")
+						label(class="block text-sm uppercase text-gray-500 mb-2 font-bold" for="firstName") Nombre
+						input#firstName(class="w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400" placeholder="Nombre" type="text" name="firstName")
 					div 
-						label(class="block text-sm uppercase text-gray-500 mb-2 font-bold" for="apellido") Apellido
-						input#apellido(class="w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400" placeholder="Apellido" type="text" name="nombre")
+						label(class="block text-sm uppercase text-gray-500 mb-2 font-bold" for="lastName") Apellido
+						input#lastName(class="w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400" placeholder="Apellido" type="text" name="lastName")
 					div 
 						label(class="block text-sm uppercase text-gray-500 mb-2 font-bold" for="email") Email
 						input#email(class="w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400" placeholder="Email" type="text" name="email")
@@ -26,7 +26,7 @@ block content
 						input#repeatPassword(class="w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400" placeholder="Repite tu contraseña" type="password" name="repeatPassword")
 
 					div(class="flex items-center justify-between")
-						a(class="text-gray-500 text-xs hover:text-gray-700 transition-colors" href="/api/auth/login") ¿Ya tienes cuenta? Inicia Sesión 
-						a(class="text-gray-500 text-xs hover:text-gray-700 transition-colors" href="/api/auth/forgot-password") Olvide mi contraseña
+						a(class="text-gray-500 text-xs hover:text-gray-700 transition-colors" href="/auth/login") ¿Ya tienes cuenta? Inicia Sesión 
+						a(class="text-gray-500 text-xs hover:text-gray-700 transition-colors" href="/auth/forgot-password") Olvide mi contraseña
 
 					input(class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 cursor-pointer transition-colors" type="submit" value="Crear Cuenta")

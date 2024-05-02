@@ -13,14 +13,17 @@ app.set("views", "./src/views")
 // Carpeta publica
 app.use(express.static("src/public"))
 
+app.use(express.urlencoded({ extended: true }))
+
 try {
 	await sequelize.authenticate()
+	sequelize.sync()
 	console.log("Connection has been established succesfully.")
 } catch (error) {
 	console.log("Unable to connect to the database", error)
 }
 
-app.use("/api", indexRouter)
+app.use("/", indexRouter)
 
 app.listen(PORT, () => {
 	console.log(`Server running on port ${PORT}`)
