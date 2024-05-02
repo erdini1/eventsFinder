@@ -1,10 +1,15 @@
 import express from "express"
+import { authenticationRender } from "../controllers/renders/authentication.render.js"
 import { authenticationController } from "../controllers/authentication.controller.js"
 
 const router = express.Router()
 
-router.get("/login", authenticationController.login)
-router.get("/register", authenticationController.register)
-router.get("/forgot-password", authenticationController.forgotPassword)
+
+router.post("/register", authenticationController.register)
+
+// Renders
+router.get("/login", authenticationRender.formLogin)
+router.get("/register", authenticationRender.formRegister)
+router.get("/forgot-password", authenticationRender.formForgotPassword)
 
 export default router

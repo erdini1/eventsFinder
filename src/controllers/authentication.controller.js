@@ -1,19 +1,14 @@
 const login = (req, res) => {
-	res.render("auth/login", {
-		titlePage: "Iniciar Sesión"
-	})
+	console.log("Login desde Authentication controller")
 }
 
 const register = (req, res) => {
-	res.render("auth/register", {
-		titlePage: "Crear Cuenta"
-	})
+	console.log(req)
+	console.log("register desde Authentication controller")
 }
 
 const forgotPassword = (req, res) => {
-	res.render("auth/forgot-password", {
-		titlePage: "Recupera tu acceso"
-	})
+	console.log("forgot password desde Authentication controller")
 }
 
 export const authenticationController = {
