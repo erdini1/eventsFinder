@@ -1,20 +1,32 @@
+import { HTTP_STATUSES } from "../constants/http.constant.js"
 import User from "../models/user.model.js"
 
 const login = (req, res) => {
 	console.log("Login desde Authentication controller")
 }
 
-// Pasar a Service
+// TODO: Pasar toda la logia al service
 const register = async (req, res) => {
+	const errors = req.errors
 	const { firstName, lastName, email, password } = req.body
-	console.log("register desde Authentication controller")
+
+	// TODO: HAcer commit "Agregando validaciones al formulario de registo"
+	if (errors.length != 0) {
+		console.log(errors)
+		return res.render("auth/register", {
+			titlePage: "Crear Cuenta",
+			errors
+		})
+	}
+
 	const user = await User.create({
 		firstName,
 		lastName,
 		email,
 		password
 	})
-	res.status(200).json(user)
+	console.log(errors)
+
 }
 
 const forgotPassword = (req, res) => {
