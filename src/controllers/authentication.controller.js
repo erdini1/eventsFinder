@@ -1,6 +1,5 @@
-// import { HTTP_STATUSES } from "../constants/http.constant.js"
 import { userRepository } from "../repositories/user.repository.js"
-import { hashPassword } from "../helpers/password.helpers.js"
+import { generateToken } from "../helpers/token.helper.js"
 
 const login = (req, res) => {
 	console.log("Login desde Authentication controller")
@@ -21,7 +20,6 @@ const register = async (req, res) => {
 		})
 	}
 
-	// TODo: HAcer commit de "Aplicando funcionalidad para evitar usuarios duplicados y se agrego el hasheo de password en la creación de usuarios"
 	const user = await userRepository.getByEmail(email)
 
 	if (user) {
@@ -34,9 +32,12 @@ const register = async (req, res) => {
 		})
 	}
 
-	// const hashedPassword = await hashPassword(password)
-	const newUser = await userRepository.create({ firstName, lastName, email, password, token: 123 })
-	console.log(newUser)
+	await userRepository.create({ firstName, lastName, email, password, token: generateToken() })
+
+	return res.render("templates/message", {
+		titlePage: "Cuenta creada correctamente",
+		message: "Cuenta creada con exito, revisa tu email para confirmar"
+	})
 }
 
 const forgotPassword = (req, res) => {
