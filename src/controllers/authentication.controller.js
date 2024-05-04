@@ -1,32 +1,42 @@
-import { HTTP_STATUSES } from "../constants/http.constant.js"
-import User from "../models/user.model.js"
+// import { HTTP_STATUSES } from "../constants/http.constant.js"
+import { userRepository } from "../repositories/user.repository.js"
+import { hashPassword } from "../helpers/password.helpers.js"
 
 const login = (req, res) => {
 	console.log("Login desde Authentication controller")
 }
 
-// TODO: Pasar toda la logia al service
+// TODO: Ver como pasar toda la logica al service
 const register = async (req, res) => {
 	const errors = req.errors
 	const { firstName, lastName, email, password } = req.body
 
-	// TODO: HAcer commit "Agregando validaciones al formulario de registo"
-	if (errors.length != 0) {
-		console.log(errors)
+	if (errors.length) {
 		return res.render("auth/register", {
 			titlePage: "Crear Cuenta",
-			errors
+			errors,
+			firstName,
+			lastName,
+			email
 		})
 	}
 
-	const user = await User.create({
-		firstName,
-		lastName,
-		email,
-		password
-	})
-	console.log(errors)
+	// TODo: HAcer commit de "Aplicando funcionalidad para evitar usuarios duplicados y se agrego el hasheo de password en la creación de usuarios"
+	const user = await userRepository.getByEmail(email)
 
+	if (user) {
+		return res.render("auth/register", {
+			titlePage: "Crear Cuenta",
+			errors: [{ msg: "El usuario ya se encuentra registrado" }],
+			firstName,
+			lastName,
+			email
+		})
+	}
+
+	// const hashedPassword = await hashPassword(password)
+	const newUser = await userRepository.create({ firstName, lastName, email, password, token: 123 })
+	console.log(newUser)
 }
 
 const forgotPassword = (req, res) => {

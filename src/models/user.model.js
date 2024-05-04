@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/db.config.js";
+import { hashPassword } from "../helpers/password.helpers.js";
 
 const User = sequelize.define("User",
 	{
@@ -23,10 +24,16 @@ const User = sequelize.define("User",
 		token: {
 			type: DataTypes.STRING
 		},
-		confirm: {
+		confirmed: {
 			type: DataTypes.BOOLEAN
 		}
+	}, {
+	hooks: {
+		beforeCreate: async function (user) {
+			user.password = await hashPassword(user.password)
+		}
 	}
+}
 )
 
 export default User
