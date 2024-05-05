@@ -1,13 +1,13 @@
 import Sequelize from "sequelize"
-import { DB_DATABASE, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT } from "./env-defaults.config.js"
+import { DB } from "./env-defaults.config.js"
 
 const sequelize = new Sequelize(
-	DB_DATABASE,
-	DB_USERNAME,
-	DB_PASSWORD,
+	DB.DATABASE,
+	DB.USERNAME,
+	DB.PASSWORD,
 	{
-		host: DB_HOST,
-		port: DB_PORT,
+		host: DB.HOST,
+		port: DB.PORT,
 		dialect: "mysql",
 		define: {
 			timestamps: true
