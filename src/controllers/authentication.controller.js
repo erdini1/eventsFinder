@@ -74,6 +74,29 @@ const register = async (req, res) => {
 	})
 }
 
+const confirmation = async (req, res) => {
+	const { token } = req.params
+	const user = await userRepository.getByToken(token)
+	if (!user) {
+		return res.render("auth/confirm-account", {
+			titlePage: "Error al confirmar tu cuenta",
+			message: "Hubo un error al confirmar tu cuenta, intenta de nuevo",
+			error: true
+		})
+	}
+
+	user.token = null
+	user.confirmed = true
+	await userRepository.save(user)
+
+	return res.render("auth/confirm-account", {
+		titlePage: "Cuenta confirmada con exito",
+		message: "Cuenta confirmada correctamente, puedes iniciar sesión",
+		error: false
+	})
+
+}
+
 const forgotPassword = (req, res) => {
 	console.log("forgot password desde Authentication controller")
 }
@@ -84,5 +107,6 @@ export const authenticationController = {
 	formForgotPassword,
 	login,
 	register,
-	forgotPassword
+	confirmation,
+	forgotPassword,
 }

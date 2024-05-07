@@ -1,5 +1,5 @@
 import express from "express"
-import { PORT } from "./src/config/env-defaults.config.js"
+import { BACKEND } from "./src/config/env-defaults.config.js"
 import sequelize from "./src/config/db.config.js"
 import indexRouter from "./src/routes/index.route.js"
 
@@ -25,6 +25,6 @@ try {
 
 app.use("/", indexRouter)
 
-app.listen(PORT, () => {
-	console.log(`Server running on port ${PORT}`)
+app.listen(BACKEND.PORT, () => {
+	console.log(`Server running on port ${BACKEND.PORT}`)
 })

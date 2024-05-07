@@ -1,7 +1,10 @@
 import "dotenv/config"
 
-// PORT
-export const PORT = process.env.PORT || 4000
+// BACKEND
+export const BACKEND = {
+	PORT: process.env.PORT || 4000,
+	URL: process.env.BACKEND_URL || "http://localhost"
+}
 
 // DATABASE
 export const DB = {

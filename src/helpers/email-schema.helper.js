@@ -1,4 +1,5 @@
 import transport from "../config/email.config.js"
+import { BACKEND } from "../config/env-defaults.config.js"
 
 const emailRegistration = async (userData) => {
 
@@ -13,7 +14,7 @@ const emailRegistration = async (userData) => {
 			<p>Hola ${firstName}, comprueba tu cuenta en EventFinder</p>
 
 			<p>Tu cuenta ya esta lista, solo debes confirmarla en el siguiente enlace: 
-			<a href="">Confirmar cuenta</a> </p>
+			<a href="${BACKEND.URL}:${BACKEND.PORT}/auth/confirmation/${token}">Confirmar cuenta</a> </p>
 
 			<p>Si tu no creaste esta cuenta, puedes ignorar el mensaje</p>
 		`
