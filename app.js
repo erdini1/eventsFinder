@@ -1,4 +1,6 @@
 import express from "express"
+import csrf from "csurf"
+import cookieParser from "cookie-parser"
 import { BACKEND } from "./src/config/env-defaults.config.js"
 import sequelize from "./src/config/db.config.js"
 import indexRouter from "./src/routes/index.route.js"
@@ -14,6 +16,12 @@ app.set("views", "./src/views")
 app.use(express.static("src/public"))
 
 app.use(express.urlencoded({ extended: true }))
+
+// Habilitar cookie parser
+app.use(cookieParser())
+
+// Habilitar CSRF (CROSS-SITE REQUEST FORGERY )
+app.use(csrf({ cookie: true }))
 
 try {
 	await sequelize.authenticate()

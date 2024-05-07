@@ -10,6 +10,8 @@ block content
 			div(class="bg-white py-8 px-4 shadow")
 				form(class="space-y-5" method="POST" action="/auth/register" novalidate)
 
+					input(type="hidden" name="_csrf" value=csrfToken)
+
 					if errors
 						div(class="max-w-md mx-auto")
 							each error in errors 
