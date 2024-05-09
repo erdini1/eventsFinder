@@ -33,8 +33,19 @@ const validateResetPassword = async (req, res, next) => {
 	next()
 }
 
+const validateLogin = async (req, res, next) => {
+	await check("email").isEmail().withMessage("El email es obligatorio").run(req)
+	await check("password").notEmpty().withMessage("La contraseña es obligatoria").run(req)
+	const result = validationResult(req)
+
+	req.errors = result.array()
+
+	next()
+}
+
 export const authenticationMiddleware = {
 	validateRegister,
 	validateForgotPassword,
-	validateResetPassword
+	validateResetPassword,
+	validateLogin
 }

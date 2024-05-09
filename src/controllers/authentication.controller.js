@@ -1,18 +1,9 @@
 import { userRepository } from "../repositories/user.repository.js"
 import { generateToken } from "../helpers/token.helper.js"
 import { emailRegistration, emailForgotPassword } from "../helpers/email-schema.helper.js"
-import { hashPassword } from "../helpers/password.helpers.js"
+import { comparePassword, hashPassword } from "../helpers/password.helpers.js"
 
 // TODO: Ver como pasar toda la logica al service
-const formLogin = (req, res) => {
-	res.render("auth/login", {
-		titlePage: "Iniciar Sesión"
-	})
-}
-
-const login = (req, res) => {
-	console.log("Login desde Authentication controller")
-}
 
 const formRegister = (req, res) => {
 	res.render("auth/register", {
@@ -189,14 +180,62 @@ const recoverAccess = async (req, res) => {
 	})
 }
 
+const formLogin = (req, res) => {
+	res.render("auth/login", {
+		titlePage: "Iniciar Sesión",
+		csrfToken: req.csrfToken()
+	})
+}
+
+const login = async (req, res) => {
+	const errors = req.errors
+	const { email, password } = req.body
+
+	if (errors.length) {
+		return res.render("auth/login", {
+			titlePage: "Iniciar Sesión",
+			csrfToken: req.csrfToken(),
+			errors
+		})
+	}
+
+	const user = await userRepository.getByEmail(email)
+	if (!user) {
+		return res.render("auth/login", {
+			titlePage: "Iniciar Sesión",
+			csrfToken: req.csrfToken(),
+			errors: [{ msg: "Email o contraseña incorrectos" }],
+		})
+	}
+
+	if (!user.confirmed) {
+		return res.render("auth/login", {
+			titlePage: "Iniciar Sesión",
+			csrfToken: req.csrfToken(),
+			errors: [{ msg: "Tu cuenta no ha sido confirmada" }],
+		})
+	}
+
+	const isPasswordValid = await comparePassword(password, user.password)
+	if (!isPasswordValid) {
+		return res.render("auth/login", {
+			titlePage: "Iniciar Sesión",
+			csrfToken: req.csrfToken(),
+			errors: [{ msg: "Email o contraseña incorrectos" }],
+		})
+	}
+
+	console.log("Usuario logueado correctamente")
+}
+
 export const authenticationController = {
-	formLogin,
 	formRegister,
 	formForgotPassword,
-	login,
 	register,
 	confirmation,
 	forgotPassword,
 	formRecoverAccess,
-	recoverAccess
+	recoverAccess,
+	formLogin,
+	login
 }
