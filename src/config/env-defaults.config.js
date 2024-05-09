@@ -22,3 +22,8 @@ export const EMAIL = {
 	HOST: process.env.EMAIL_HOST || "myemailhost",
 	PORT: process.env.EMAIL_PORT || "myemailport"
 }
+
+// JWT
+export const JWT = {
+	SECRET: process.env.JWT_SECRET || "myjwtsecret"
+}

@@ -1,5 +1,5 @@
 import { userRepository } from "../repositories/user.repository.js"
-import { generateToken } from "../helpers/token.helper.js"
+import { encode, generateToken } from "../helpers/token.helper.js"
 import { emailRegistration, emailForgotPassword } from "../helpers/email-schema.helper.js"
 import { comparePassword, hashPassword } from "../helpers/password.helpers.js"
 
@@ -225,7 +225,16 @@ const login = async (req, res) => {
 		})
 	}
 
-	console.log("Usuario logueado correctamente")
+	const token = encode({
+		id: user.id,
+		firstName: user.firstName,
+		lastName: user.lastName,
+	})
+
+	return res.cookie("_token", token, {
+		httpOnly: true,
+		// secure: true,
+	}).redirect("/my-events")
 }
 
 export const authenticationController = {
