@@ -14,6 +14,27 @@ const validateRegister = async (req, res, next) => {
 	next()
 }
 
+const validateForgotPassword = async (req, res, next) => {
+	await check("email").isEmail().withMessage("Debes ingresar un email valido").run(req)
+	const result = validationResult(req)
+
+	req.errors = result.array()
+
+	next()
+}
+
+const validateResetPassword = async (req, res, next) => {
+	await check("password").isLength({ min: 6 }).withMessage("La contraseña debe contener al menos 6 caracteres").run(req)
+	await check("repeatPassword").equals(req.body.password).withMessage("Las contraseñas no coinciden").run(req)
+	const result = validationResult(req)
+
+	req.errors = result.array()
+
+	next()
+}
+
 export const authenticationMiddleware = {
-	validateRegister
+	validateRegister,
+	validateForgotPassword,
+	validateResetPassword
 }

@@ -5,11 +5,17 @@ import { authenticationMiddleware } from "../middlewares/authentication.middlewa
 const router = express.Router()
 
 // FORMS
-router.get("/login", authenticationController.formLogin)
-router.get("/register", authenticationController.formRegister)
-router.get("/forgot-password", authenticationController.formForgotPassword)
 
+router.get("/register", authenticationController.formRegister)
 router.post("/register", authenticationMiddleware.validateRegister, authenticationController.register)
 router.get("/confirmation/:token", authenticationController.confirmation)
+
+router.get("/forgot-password", authenticationController.formForgotPassword)
+router.post("/forgot-password", authenticationMiddleware.validateForgotPassword, authenticationController.forgotPassword)
+
+router.get("/forgot-password/:token", authenticationMiddleware.validateResetPassword, authenticationController.formRecoverAccess)
+router.post("/forgot-password/:token", authenticationMiddleware.validateResetPassword, authenticationController.recoverAccess)
+
+router.get("/login", authenticationController.formLogin)
 
 export default router

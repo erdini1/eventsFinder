@@ -11,7 +11,7 @@ import User from "../models/user.model.js"
  */
 const getByEmail = async (email) => {
 	const user = await User.findOne({ where: { email } })
-	return user?.dataValues
+	return user
 }
 
 /**
