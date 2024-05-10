@@ -1,0 +1,10 @@
+extends ../layout/index
+
+block content
+	div
+		div(class="py-2")
+		h1(class="text-4xl my-10 text-center font-extrabold") Event
+			span(class="font-normal") Finder
+		h2(class="text-center font-extrabold text-2xl")= titlePage
+
+		a(href="/event/create" class="rounded py-2 px-10 bg-indigo-600 hover:bg-indigo-700 text-sm font-bold text-center text-white uppercase my-5 inline-block w-full sm:w-auto") Publicar Evento

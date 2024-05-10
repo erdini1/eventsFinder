@@ -234,7 +234,7 @@ const login = async (req, res) => {
 	return res.cookie("_token", token, {
 		httpOnly: true,
 		// secure: true,
-	}).redirect("/my-events")
+	}).redirect("/event/my-events")
 }
 
 export const authenticationController = {
