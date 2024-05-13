@@ -5,6 +5,15 @@ const admin = (req, res) => {
 	})
 }
 
+// Form to create a new event
+const create = (req, res) => {
+	res.render("event/create", {
+		titlePage: "Crear evento",
+		navbar: true
+	})
+}
+
 export const eventController = {
-	admin
+	admin,
+	create
 }

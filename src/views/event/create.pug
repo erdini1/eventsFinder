@@ -1,0 +1,45 @@
+extends ../layout/index
+
+block content
+	div
+		div(class="py-2")
+		h1(class="text-4xl my-10 text-center font-extrabold") Event
+			span(class="font-normal") Finder
+		h2(class="text-center font-extrabold text-2xl")= titlePage
+
+		div(class="bg-white shadow py-8 px-4 rounded mx-auto max-w-4xl my-10 md:px-10")
+			form(class="space-y-8")
+				div(class="space-y-5")
+					h3(class="text-lg leading-6 font-medium text-gray-900") Información General 
+					p(class="text-gray-600") Añade información sobre el evento
+
+					div
+						label(class="block text-sm uppercase text-gray-500 mb-2 font-bold" for="title") Titulo del evento
+						input#title(class="w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400" placeholder="Titulo Evento" type="text" name="title")
+
+					div(class="md:flex md:gap-4 space-y-5 md:space-y-0")
+						div(class="md:w-1/2")
+							label(class="block text-sm uppercase text-gray-500 mb-2 font-bold" for="category") Categoria
+							select#category(class="w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400" name="category")
+								option(value="") - Seleccione -
+						div(class="md:w-1/2")
+							label(class="block text-sm uppercase text-gray-500 mb-2 font-bold" for="price") Precio
+							input#price(class="w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400" placeholder="Precio" type="number" min=0 name="price")
+					
+					div(class="md:flex md:gap-4 space-y-5 md:space-y-0")
+						div(class="md:w-1/2")
+							label(class="block text-sm uppercase text-gray-500 mb-2 font-bold" for="eventDate") Fecha
+							input#eventDate(class="w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400" placeholder="Fecha del evento" type="text" name="eventDate")
+							//- select#eventDate(class="w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400" name="eventDate")
+							//- 	option(value="") - Seleccione -
+						div(class="md:w-1/2")
+							label(class="block text-sm uppercase text-gray-500 mb-2 font-bold" for="eventTime") Hora
+							input#eventTime(class="w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400" placeholder="Hora del evento" type="text" name="eventTime")
+							//- select#eventTime(class="w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400" name="eventTime")
+							//- 	option(value="") - Seleccione -
+
+					//- Agregar un buscador, cuando no encuentre el participante, que deje agregarlo. de esta forma no se pierde la integridad de la información
+					label(class="block text-sm uppercase text-gray-500 mb-2 font-bold" for="participants") Participantes
+					input#participants(class="w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400" placeholder="Participantes" type="text" name="participants")
+
+					
