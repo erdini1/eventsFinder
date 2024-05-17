@@ -6,17 +6,22 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js",
-    "css": "postcss src/public/css/tailwind.css -o src/public/css/app.css --watch"
+    "start": "nodemon app.js",
+    "css": "postcss src/public/css/tailwind.css -o src/public/css/app.css --watch",
+    "js": "webpack --watch",
+    "dev": "concurrently \"npm run css\" \"npm run js\""
   },
   "author": "Dylan Erdini",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^10.4.19",
+    "concurrently": "^8.2.2",
     "nodemon": "^3.1.0",
     "postcss": "^8.4.38",
     "postcss-cli": "^11.0.0",
-    "tailwindcss": "^3.4.3"
+    "tailwindcss": "^3.4.3",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
