@@ -9,7 +9,8 @@
     "start": "nodemon app.js",
     "css": "postcss src/public/css/tailwind.css -o src/public/css/app.css --watch",
     "js": "webpack --watch",
-    "dev": "concurrently \"npm run css\" \"npm run js\""
+    "dev": "concurrently \"npm run css\" \"npm run js\"",
+    "db:import": "node src/seed/index.seed.js -i"
   },
   "author": "Dylan Erdini",
   "license": "ISC",
