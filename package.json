@@ -10,7 +10,8 @@
     "css": "postcss src/public/css/tailwind.css -o src/public/css/app.css --watch",
     "js": "webpack --watch",
     "dev": "concurrently \"npm run css\" \"npm run js\"",
-    "db:import": "node src/seed/index.seed.js -i"
+    "db:import": "node src/seed/index.seed.js -i",
+    "db:delete": "node src/seed/index.seed.js -d"
   },
   "author": "Dylan Erdini",
   "license": "ISC",

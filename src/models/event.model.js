@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../config/db.config";
+import sequelize from "../config/db.config.js";
 
 const Event = sequelize.define("Event",
 	{
@@ -22,7 +22,7 @@ const Event = sequelize.define("Event",
 		},
 		eventDate: {
 			type: DataTypes.DATEONLY,
-			allowNull
+			allowNull: false
 		},
 		eventTime: {
 			type: DataTypes.TIME,
